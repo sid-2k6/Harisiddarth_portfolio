@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harisiddarth - AI & ML Engineer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark-color);
+            background-color: #f9f9f9;
+        }
+        
+        .navbar {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+        
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-card .card-body {
+            padding: 20px;
+        }
+        
+        .skill-badge {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            padding: 8px 15px;
+            border-radius: 50px;
+            margin: 5px;
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .education-item {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .education-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 30px 0;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+            border-color: #2980b9;
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero-image {
+                width: 200px;
+                height: 200px;
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">HARISIDDARTH</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#education">Education</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-md-4 mb-4">
+                    <img src="C:\Users\Harisiddarth\Downloads\IMG_6626.jpg" alt="Harisiddarth" class="hero-image">
+                </div>
+                <div class="col-md-8 text-md-start text-center">
+                    <h1 class="display-4 fw-bold mb-3">HARISIDDARTH S</h1>
+                    <h3 class="mb-4">AI & ML Engineer</h3>
+                    <p class="lead mb-4">Aspiring Machine Learning and IoT specialist with expertise in deep learning, computer vision, and smart systems development.</p>
+                    <div class="d-flex justify-content-md-start justify-content-center">
+                        <a href="#contact" class="btn btn-light btn-lg me-3">Contact Me</a>
+                        <a href="#projects" class="btn btn-outline-light btn-lg">View Projects</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-5" id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <p>I'm a Bachelor of Engineering student in CSE (AI & ML) at Dr. Mahalingam College Of Engineering & Technology with a CGPA of 8.1/10. My passion lies in applying Machine Learning, Artificial Intelligence, and IoT to solve real-world problems.</p>
+                    <p>I seek opportunities where I can contribute to innovative AI and IoT solutions, enhance my technical expertise, and grow professionally. I'm eager to work on cutting-edge projects that integrate AI, IoT, and data-driven insights to drive impactful outcomes.</p>
+                    <p>I aim to collaborate with dynamic teams to develop scalable, intelligent systems that improve efficiency, automation, and decision-making while continuously learning and adapting to emerging technologies.</p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Contact Information</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-envelope me-2 text-secondary"></i> hari2006006@gmail.com</li>
+                                <li class="mb-2"><i class="fas fa-phone me-2 text-secondary"></i> +91 8248908831</li>
+                                <li class="mb-2"><i class="fas fa-map-marker-alt me-2 text-secondary"></i> Coimbatore, Tamil Nadu, India</li>
+                            </ul>
+                            <h5 class="card-title mt-4">Languages</h5>
+                            <p>Tamil - Native Speaker</p>
+                            <p>English (B2 Proficiency - Cambridge Assessment)</p>
+                            <p>Hindi -DBHPS Madhyama</p>
+                            <p>Malayalam</p>
+                            <h5 class="card-title mt-4">Certifications</h5>
+                            <ul>
+                                <li>Linguaskill Certificate – English Proficiency (Cambridge Assessment English)</li>
+                                <li>NPTEL Certification in Introduction to Programming in C</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="py-5 bg-light" id="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card project-card h-100">
+                        <div class="card-body">
+                            <h4 class="card-title">Indian Sign Language Detection Using Deep Learning</h4>
+                            <p class="text-muted mb-3">March 2025</p>
+                            <p class="card-text">Developed a deep learning-based real-time Indian Sign Language (ISL) recognition system using YOLOv8 for accurate hand sign detection. Integrated character detection, sentence formation, and text-to-speech conversion for a comprehensive communication tool.</p>
+                            <p class="card-text">Technologies: YOLOv8, OpenCV, Flask, TTS, Deep Learning</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card project-card h-100">
+                        <div class="card-body">
+                            <h4 class="card-title">Brain Tumor Detection Using CNN & U-Net</h4>
+                            <p class="text-muted mb-3">January 2025</p>
+                            <p class="card-text">Developed a deep learning model using CNN and U-Net for accurate brain tumor segmentation and classification from MRI scans. Achieved high accuracy by leveraging transfer learning and optimizing hyperparameters.</p>
+                            <p class="card-text">Technologies: CNN, U-Net, Flask, Deep Learning, Medical Imaging</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-4">
+                    <div class="card project-card h-100">
+                        <div class="card-body">
+                            <h4 class="card-title">Handwritten Math Equation Solver</h4>
+                            <p class="text-muted mb-3">December 2024</p>
+                            <p class="card-text">Designed and implemented a CNN-based model for recognizing and solving handwritten mathematical equations. Employed sequence modeling and OCR techniques to extract symbols and numbers for accurate equation recognition.</p>
+                            <p class="card-text">Technologies: CNN, OCR, Flask, JavaScript, Image Processing</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-4">
+                    <div class="card project-card h-100">
+                        <div class="card-body">
+                            <h4 class="card-title">Smart Water Level Control System with Alert Using Arduino UNO</h4>
+                            <p class="text-muted mb-3">January 2024</p>
+                            <p class="card-text">Developed an IoT-based smart agriculture system using ESP8266 and Wi-Fi module to monitor environmental conditions and improve farming efficiency. Implemented real-time monitoring and alerts through Blynk IoT mobile app.</p>
+                            <p class="card-text">Technologies: Arduino UNO, ESP8266, IoT, Blynk App, Sensors</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="py-5" id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="card-title">Machine Learning & Deep Learning</h4>
+                            <div class="my-3">
+                                <span class="skill-badge">TensorFlow</span>
+                                <span class="skill-badge">Keras</span>
+                                <span class="skill-badge">PyTorch</span>
+                                <span class="skill-badge">Scikit-Learn</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="card-title">Computer Vision</h4>
+                            <div class="my-3">
+                                <span class="skill-badge">OpenCV</span>
+                                <span class="skill-badge">CNN</span>
+                                <span class="skill-badge">U-Net</span>
+                                <span class="skill-badge">YOLO</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Data Science</h4>
+                            <div class="my-3">
+                                <span class="skill-badge">NumPy</span>
+                                <span class="skill-badge">Pandas</span>
+                                <span class="skill-badge">Matplotlib</span>
+                                <span class="skill-badge">Seaborn</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="card-title">Programming Languages</h4>
+                            <div class="my-3">
+                                <span class="skill-badge">Python</span>
+                                <span class="skill-badge">SQL</span>
+                                <span class="skill-badge">Java</span>
+                                <span class="skill-badge">C</span>
+                                <span class="skill-badge">HTML</span>
+                                <span class="skill-badge">CSS</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="card-title">Data Processing</h4>
+                            <div class="my-3">
+                                <span class="skill-badge">Feature Engineering</span>
+                                <span class="skill-badge">Data Augmentation</span>
+                                <span class="skill-badge">Image Preprocessing</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Tools</h4>
+                            <div class="my-3">
+                                <span class="skill-badge">Git</span>
+                                <span class="skill-badge">GitHub</span>
+                                <span class="skill-badge">Flask</span>
+                                <span class="skill-badge">Jupyter Notebook</span>
+                                <span class="skill-badge">Google Colab</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="py-5 bg-light" id="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="education-item">
+                        <h4>Bachelor of Engineering in CSE (AI & ML)</h4>
+                        <p>Dr. Mahalingam College Of Engineering & Technology</p>
+                        <p class="text-muted">2023 - present | CGPA: 8.1/10</p>
+                    </div>
+                    <div class="education-item">
+                        <h4>Senior Secondary (XII), Tamil Nadu State Board</h4>
+                        <p>Elgi Matriculation Higher Secondary School, Coimbatore</p>
+                        <p class="text-muted">2022 - 2023 | Percentage: 85.6%</p>
+                    </div>
+                    <div class="education-item">
+                        <h4>Secondary (X), Tamil Nadu State Board</h4>
+                        <p>Elgi Matriculation Higher Secondary School, Coimbatore</p>
+                        <p class="text-muted">2020 - 2021 | Percentage: 90.0%</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Certifications</h4>
+                            <div class="certification-item mb-4">
+                                <h5>Linguaskill Certificate – English Proficiency</h5>
+                                <p>Cambridge Assessment English</p>
+                                <p>Achieved B2 in Listening, Reading, Writing, and Speaking</p>
+                                <p class="text-muted">Issued: August 2024</p>
+                            </div>
+                            <div class="certification-item">
+                                <h5>NPTEL Certification in Introduction to Programming in C</h5>
+                                <p>IIT Kanpur & NPTEL, Ministry of Education</p>
+                                <p>Successfully completed with Elite certification</p>
+                                <p class="text-muted">Issued: March 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-5" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Me</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" class="form-control" id="subject" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+                <div class="col-lg-6 mt-4 mt-lg-0">
+                    <div class="card h-100">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <h4 class="card-title">Get In Touch</h4>
+                            <p class="card-text">I'm currently looking for opportunities in AI, ML, and IoT. Feel free to reach out to me for collaborations or just a chat about technology!</p>
+                            <ul class="list-unstyled">
+                                <li class="mb-3"><i class="fas fa-envelope me-2 text-secondary"></i> hari2006006@gmail.com</li>
+                                <li class="mb-3"><i class="fas fa-phone me-2 text-secondary"></i> +91 8248908831</li>
+                                <li class="mb-3"><i class="fas fa-map-marker-alt me-2 text-secondary"></i> Coimbatore, Tamil Nadu, India</li>
+                            </ul>
+                            <div class="social-icons mt-4">
+                                <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>&copy; 2025 Harisiddarth. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Form submission placeholder
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
