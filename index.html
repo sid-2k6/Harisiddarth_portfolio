@@ -80,7 +80,41 @@
   --font-head:'Space Grotesk',sans-serif;
   --font-body:'Rajdhani',sans-serif;
   --maxw:1240px;
+  --star-a:200,225,255;   /* particle base color (RGB) for canvases */
+  --star-b:0,245,255;
 }
+
+/* ---- LIGHT THEME (daylight nebula) ---- */
+html[data-theme="light"]{
+  --black:#eaf1fb;
+  --navy:#dbe7f7;
+  --navy-2:#c9dcf2;
+  --neon:#0089c2;
+  --cyan:#0499bd;
+  --purple:#6b46e0;
+  --white:#0c1c33;
+  --muted:#4a6076;
+  --glass:rgba(255,255,255,0.6);
+  --glass-strong:rgba(255,255,255,0.82);
+  --border:rgba(0,120,170,0.22);
+  --border-strong:rgba(0,145,180,0.5);
+  --grad:linear-gradient(120deg,#0499bd,#0077c4 45%,#6b46e0);
+  --shadow-neon:0 0 16px rgba(0,140,190,0.30);
+  --star-a:70,110,150;
+  --star-b:0,140,190;
+}
+html[data-theme="light"] body{color:var(--white);}
+html[data-theme="light"] .bg-grid{opacity:.18;}
+html[data-theme="light"] .aurora{opacity:.35;}
+html[data-theme="light"] #starfield,html[data-theme="light"] #neural{opacity:.55;}
+html[data-theme="light"] .hero-core{opacity:.35;}
+html[data-theme="light"] .profile-frame img{border-color:#fff;}
+html[data-theme="light"] .field input,html[data-theme="light"] .field textarea{background:rgba(255,255,255,0.6);}
+html[data-theme="light"] ::-webkit-scrollbar-track{background:var(--navy);}
+html[data-theme="light"] .nav.scrolled{background:rgba(234,241,251,0.8);}
+html[data-theme="light"] #preloader{background:var(--black);}
+html[data-theme="light"] .btn-primary{color:#f5fbff;}
+html[data-theme="light"] .proj-thumb .ptxt{color:#0c1c33;opacity:.14;}
 
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;overflow-x:hidden;width:100%;}
@@ -96,7 +130,10 @@ body{
   width:100%;
   max-width:100%;
   letter-spacing:.3px;
+  transition:background .5s ease, color .5s ease;
 }
+/* Smooth theme cross-fade for glass surfaces */
+.glass,.nav,.btn,.chip,.skill-tags span,.proj-mini span,.field input,.field textarea,.theme-toggle{transition:background .5s ease,border-color .5s ease,color .3s ease,box-shadow .3s ease,transform .3s ease;}
 
 a{color:inherit;text-decoration:none;}
 img{max-width:100%;display:block;}
@@ -208,7 +245,11 @@ section{position:relative;z-index:2;}
 .nav-links a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--grad);box-shadow:0 0 8px var(--cyan);transition:width .3s;}
 .nav-links a:hover,.nav-links a.active{color:var(--white);}
 .nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+.nav-right{display:flex;align-items:center;gap:10px;}
 .nav-toggle{display:none;background:none;border:1px solid var(--border);color:var(--cyan);font-size:1.2rem;width:42px;height:42px;border-radius:10px;cursor:pointer;}
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;border:1px solid var(--border);background:var(--glass);color:var(--cyan);font-size:1.05rem;cursor:pointer;transition:transform .4s,color .3s,border-color .3s,box-shadow .3s;backdrop-filter:blur(8px);}
+.theme-toggle:hover{transform:rotate(25deg) scale(1.08);border-color:var(--border-strong);box-shadow:var(--shadow-neon);color:var(--purple);}
+.theme-toggle i{transition:transform .5s;}
 
 @media(max-width:900px){
   .nav-toggle{display:inline-flex;align-items:center;justify-content:center;}
@@ -314,9 +355,11 @@ section{position:relative;z-index:2;}
 
 /* Profile card with tilt */
 .profile-card{padding:24px;border-radius:24px;text-align:center;position:sticky;top:100px;}
-.profile-frame{position:relative;width:230px;height:230px;margin:0 auto 20px;border-radius:50%;padding:5px;background:conic-gradient(from 0deg,var(--cyan),var(--purple),var(--neon),var(--cyan));animation:spin 8s linear infinite;}
-.profile-frame img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:4px solid var(--black);}
-.profile-frame::after{content:'';position:absolute;inset:-6px;border-radius:50%;border:1px dashed rgba(0,245,255,0.3);animation:spin 20s linear infinite reverse;}
+/* Rotating ring behind the photo; the image itself never spins */
+.profile-frame{position:relative;width:230px;height:230px;margin:0 auto 20px;border-radius:50%;padding:5px;}
+.profile-frame::before{content:'';position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,var(--cyan),var(--purple),var(--neon),var(--cyan));animation:spin 8s linear infinite;z-index:0;}
+.profile-frame img{position:relative;z-index:1;width:100%;height:100%;border-radius:50%;object-fit:cover;border:4px solid var(--black);}
+.profile-frame::after{content:'';position:absolute;inset:-6px;border-radius:50%;border:1px dashed rgba(0,245,255,0.3);animation:spin 20s linear infinite reverse;z-index:0;}
 .profile-name{font-family:var(--font-display);font-weight:700;font-size:1.35rem;letter-spacing:1px;margin-bottom:6px;}
 .profile-role{color:var(--cyan);font-family:var(--font-head);font-size:.9rem;letter-spacing:1px;margin-bottom:16px;}
 .profile-socials{display:flex;justify-content:center;gap:12px;margin-top:10px;}
@@ -587,7 +630,10 @@ section{position:relative;z-index:2;}
     <li><a href="#stack">Stack</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light / dark mode" title="Toggle theme"><i class="fas fa-moon"></i></button>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
+  </div>
 </nav>
 
 <!-- ============ HERO ============ -->
@@ -607,7 +653,7 @@ section{position:relative;z-index:2;}
     <p class="hero-desc">AI enthusiast passionate about solving real-world problems using Deep Learning, Computer Vision, NLP, Federated Learning, LLMs, and Full Stack AI development.</p>
     <div class="hero-btns">
       <a href="#projects" class="btn btn-primary" data-magnetic><i class="fas fa-rocket"></i> View Projects</a>
-      <a href="#" id="resumeBtn" class="btn btn-ghost" data-magnetic><i class="fas fa-download"></i> Download Resume</a>
+      <a href="Harisiddarth_S_Resume.pdf" id="resumeBtn" class="btn btn-ghost" data-magnetic download="Harisiddarth_S_Resume.pdf"><i class="fas fa-download"></i> Download Resume</a>
       <a href="#contact" class="btn btn-ghost" data-magnetic><i class="fas fa-paper-plane"></i> Contact Me</a>
     </div>
 
@@ -655,7 +701,7 @@ section{position:relative;z-index:2;}
       <div class="edu-block reveal d2">
         <h3><i class="fas fa-graduation-cap"></i> Education</h3>
         <div class="edu-card glass gborder">
-          <div class="cgpa">8.1</div>
+          <div class="cgpa">7.8</div>
           <div class="yr">2023 &mdash; Present · Expected 2027</div>
           <h4>B.E. — Artificial Intelligence &amp; Machine Learning</h4>
           <p>Dr. Mahalingam College of Engineering and Technology · Anna University</p>
@@ -762,7 +808,7 @@ section{position:relative;z-index:2;}
     <div class="tl-item glass gborder reveal">
       <div class="role">Machine Learning Engineer Intern</div>
       <div class="company">Zequin Technology</div>
-      <span class="period">Internship</span>
+      <span class="period">Sept 2025 &mdash; Feb 2026</span>
       <ul>
         <li>Developed ML Models</li>
         <li>Computer Vision</li>
@@ -926,8 +972,8 @@ section{position:relative;z-index:2;}
 
   <div class="vtimeline">
     <div class="vitem reveal"><div class="vcard glass gborder"><div class="vyr">2020 — 2021</div><h4>Secondary School (SSLC)</h4><p>Elgi Matriculation Higher Secondary School, Coimbatore · 90.0%</p></div></div>
-    <div class="vitem reveal d1"><div class="vcard glass gborder"><div class="vyr">2022 — 2023</div><h4>Higher Secondary (HSC)</h4><p>Elgi Matriculation Higher Secondary School, Coimbatore · 85.6%</p></div></div>
-    <div class="vitem reveal"><div class="vcard glass gborder"><div class="vyr">2023 — Present</div><h4>B.E. Artificial Intelligence &amp; Machine Learning</h4><p>Dr. Mahalingam College of Engineering and Technology · Anna University · CGPA 8.1</p></div></div>
+    <div class="vitem reveal d1"><div class="vcard glass gborder"><div class="vyr">2022 — 2023</div><h4>Higher Secondary (HSC)</h4><p>Elgi Matriculation Higher Secondary School, Coimbatore · 85.16%</p></div></div>
+    <div class="vitem reveal"><div class="vcard glass gborder"><div class="vyr">2023 — Present</div><h4>B.E. Artificial Intelligence &amp; Machine Learning</h4><p>Dr. Mahalingam College of Engineering and Technology · Anna University, Pollachi · CGPA 7.8</p></div></div>
   </div>
 </section>
 
@@ -1015,10 +1061,46 @@ const rand  = (a,b)=>a+Math.random()*(b-a);
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isTouch = window.matchMedia('(hover:none)').matches;
 
+/* Shared palette read from CSS variables so canvases follow the active theme */
+const PALETTE = { starA:'200,225,255', starB:'0,245,255', line:'0,207,255', node:'0,245,255', mouse:'122,92,255' };
+function refreshPalette(){
+  const cs = getComputedStyle(document.documentElement);
+  const a = cs.getPropertyValue('--star-a').trim();
+  const b = cs.getPropertyValue('--star-b').trim();
+  PALETTE.light = document.documentElement.getAttribute('data-theme') === 'light';
+  if(a) PALETTE.starA = a;
+  if(b){ PALETTE.starB = b; PALETTE.line = b; PALETTE.node = b; }
+  PALETTE.mouse = PALETTE.light ? '107,70,224' : '122,92,255';
+}
+refreshPalette();
+
 /* ---------- B. PRELOADER ---------- */
 window.addEventListener('load', () => {
   setTimeout(() => $('#preloader').classList.add('hide'), 600);
 });
+
+/* ---------- B2. THEME TOGGLE (light / dark) ---------- */
+(function theme(){
+  const btn = $('#themeToggle');
+  const root = document.documentElement;
+  const saved = localStorage.getItem('hp-theme');
+  const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+  const initial = saved || (prefersLight ? 'light' : 'dark');
+  function apply(mode){
+    root.setAttribute('data-theme', mode);
+    refreshPalette();
+    if(btn){
+      btn.innerHTML = mode === 'light' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+      btn.setAttribute('title', mode === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+      btn.setAttribute('aria-pressed', mode === 'light');
+    }
+    localStorage.setItem('hp-theme', mode);
+  }
+  apply(initial);
+  if(btn) btn.addEventListener('click', () => {
+    apply(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+  });
+})();
 
 /* ---------- C. CUSTOM CURSOR + MOUSE GLOW ---------- */
 (function cursor(){
@@ -1287,7 +1369,7 @@ window.addEventListener('load', () => {
       const py = (s.y - scrollY0*dpr*s.z*0.25) % H;
       const yy = py<0 ? py+H : py;
       ctx.beginPath();
-      ctx.fillStyle = s.z>0.7 ? `rgba(0,245,255,${a})` : `rgba(200,225,255,${a})`;
+      ctx.fillStyle = s.z>0.7 ? `rgba(${PALETTE.starB},${a})` : `rgba(${PALETTE.starA},${a})`;
       ctx.arc(s.x, yy, s.r*s.z, 0, Math.PI*2); ctx.fill();
     }
     requestAnimationFrame(draw);
@@ -1328,7 +1410,7 @@ window.addEventListener('load', () => {
         const dx=a.x-b.x, dy=a.y-b.y, d=Math.hypot(dx,dy);
         if(d<LINK){
           const o=(1-d/LINK)*0.28;
-          ctx.strokeStyle=`rgba(0,207,255,${o})`; ctx.lineWidth=dpr*0.6;
+          ctx.strokeStyle=`rgba(${PALETTE.line},${o})`; ctx.lineWidth=dpr*0.6;
           ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
         }
       }
@@ -1336,10 +1418,10 @@ window.addEventListener('load', () => {
       const dmx=a.x-mouse.x, dmy=a.y-mouse.y, dm=Math.hypot(dmx,dmy);
       if(dm<LINK*1.4){
         const o=(1-dm/(LINK*1.4))*0.5;
-        ctx.strokeStyle=`rgba(122,92,255,${o})`; ctx.lineWidth=dpr*0.7;
+        ctx.strokeStyle=`rgba(${PALETTE.mouse},${o})`; ctx.lineWidth=dpr*0.7;
         ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(mouse.x,mouse.y); ctx.stroke();
       }
-      ctx.beginPath(); ctx.fillStyle='rgba(0,245,255,0.65)';
+      ctx.beginPath(); ctx.fillStyle=`rgba(${PALETTE.node},0.65)`;
       ctx.arc(a.x,a.y,a.r,0,Math.PI*2); ctx.fill();
     }
     requestAnimationFrame(draw);
@@ -1359,7 +1441,7 @@ window.addEventListener('load', () => {
     const count=reduceMotion?20:Math.min(80,Math.floor(rect.width/16));
     ps=Array.from({length:count},()=>({
       x:Math.random()*W,y:Math.random()*H,vx:rand(-0.3,0.3)*dpr,vy:rand(-0.3,0.3)*dpr,
-      r:rand(0.6,2.4)*dpr, c:Math.random()>0.5?'0,245,255':'122,92,255', a:rand(0.2,0.7)
+      r:rand(0.6,2.4)*dpr, role:Math.random()>0.5?0:1, a:rand(0.2,0.7)
     }));
   }
   function draw(){
@@ -1367,7 +1449,7 @@ window.addEventListener('load', () => {
     for(const p of ps){
       p.x+=p.vx; p.y+=p.vy;
       if(p.x<0||p.x>W)p.vx*=-1; if(p.y<0||p.y>H)p.vy*=-1;
-      ctx.beginPath(); ctx.fillStyle=`rgba(${p.c},${p.a})`;
+      ctx.beginPath(); ctx.fillStyle=`rgba(${p.role?PALETTE.mouse:PALETTE.starB},${p.a})`;
       ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
     }
     requestAnimationFrame(draw);
@@ -1384,7 +1466,7 @@ window.addEventListener('load', () => {
     dpr=Math.min(devicePixelRatio||1,2);
     W=cv.width=rect.width*dpr; H=cv.height=rect.height*dpr;
     cv.style.width=rect.width+'px'; cv.style.height=rect.height+'px';
-    stars=Array.from({length:160},()=>({ang:rand(0,Math.PI*2),rad:rand(0,Math.min(W,H)*0.5),r:rand(0.3,1.6)*dpr,c:Math.random()>0.5?'0,245,255':'122,92,255'}));
+    stars=Array.from({length:160},()=>({ang:rand(0,Math.PI*2),rad:rand(0,Math.min(W,H)*0.5),r:rand(0.3,1.6)*dpr,role:Math.random()>0.5?0:1}));
   }
   function draw(){
     ctx.clearRect(0,0,W,H); t+=reduceMotion?0:0.0016;
@@ -1392,7 +1474,7 @@ window.addEventListener('load', () => {
     for(const s of stars){
       const a=s.ang+t*(1-s.rad/(Math.min(W,H)));
       const x=cx+Math.cos(a)*s.rad, y=cy+Math.sin(a)*s.rad*0.4;
-      ctx.beginPath(); ctx.fillStyle=`rgba(${s.c},${0.5})`;
+      ctx.beginPath(); ctx.fillStyle=`rgba(${s.role?PALETTE.mouse:PALETTE.starB},${0.5})`;
       ctx.arc(x,y,s.r,0,Math.PI*2); ctx.fill();
     }
     requestAnimationFrame(draw);
@@ -1513,56 +1595,16 @@ window.addEventListener('load', () => {
     form.reset();
   });
 
-  // Resume download (generates a formatted .txt)
-  $('#resumeBtn').addEventListener('click', e=>{
-    e.preventDefault();
-    const content=
-`HARISIDDARTH S
-Artificial Intelligence & Machine Learning Engineer
-Coimbatore, Tamil Nadu, India
-Email: hari2006006@gmail.com | Phone: +91 8248908831
-GitHub: github.com/sid-2k6 | LinkedIn: linkedin.com/in/harisiddarth-s-2b8827291
-
-SUMMARY
-AI enthusiast passionate about solving real-world problems using Deep Learning,
-Computer Vision, NLP, Federated Learning, LLMs and Full Stack AI development.
-
-EDUCATION
-B.E. Artificial Intelligence & Machine Learning — CGPA 8.1
-Dr. Mahalingam College of Engineering and Technology (Anna University), 2023–Present
-HSC — Elgi Matriculation Higher Secondary School, Coimbatore — 85.6% (2022–2023)
-SSLC — Elgi Matriculation Higher Secondary School, Coimbatore — 90.0% (2020–2021)
-
-EXPERIENCE
-Machine Learning Engineer Intern — Zequin Technology
-- ML model development, Computer Vision, NLP, model training, deployment & optimization.
-
-KEY PROJECTS
-1. InterviewForge — Hybrid RAG interview assistant (BM25 + Dense + Reranking, FastAPI, Quantized 7B LLM).
-2. American Sign Language Detection — YOLOv8, OpenCV, MediaPipe, TTS, Flask.
-3. SpeakWise — AI English learning platform (speech, pronunciation, grammar, cross-attention).
-4. Learn-X — Cross-attention transformer for writing quality & grammar error correction.
-5. Skin Disease Classification (SkinDisNet) — SAM2 + EfficientNetV2 + metadata fusion.
-6. ECG Arrhythmia Classification — Lead-aware CNN + BiLSTM, federated learning, PTB-XL.
-7. ALBOT — Mental health chatbot with mood & emotion analysis (LLMs).
-8. ISL Stickman Translator — MediaPipe Holistic, Blender, Three.js.
-9. Brain Tumor Detection — CNN, MRI segmentation.
-10. House Price Prediction — Random Forest regression.
-
-SKILLS
-Python, Java, C, JavaScript, SQL | PyTorch, TensorFlow, Flask, FastAPI, LangChain,
-MediaPipe, OpenCV, Streamlit, React | Deep Learning, CV, NLP, LLMs, RAG, YOLO, CNN,
-LSTM, Federated Learning | MySQL, MongoDB | Git, Docker, Ollama, Linux, FFmpeg.
-
-CERTIFICATIONS
-Linguaskill B2 (Cambridge) | Introduction to Programming in C (NPTEL, IIT Kanpur).
-
-"Building Intelligent Systems That Shape the Future."`;
-    const blob=new Blob([content],{type:'text/plain'});
-    const url=URL.createObjectURL(blob);
-    const a=document.createElement('a'); a.href=url; a.download='Harisiddarth_S_Resume.txt';
-    document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
-  });
+  // Resume: the button is a real <a download> pointing to Harisiddarth_S_Resume.pdf.
+  // Add a gentle confirmation micro-interaction on click.
+  const resumeBtn=$('#resumeBtn');
+  if(resumeBtn){
+    resumeBtn.addEventListener('click', ()=>{
+      const original=resumeBtn.innerHTML;
+      resumeBtn.innerHTML='<i class="fas fa-circle-check"></i> Downloading…';
+      setTimeout(()=>{ resumeBtn.innerHTML=original; }, 2200);
+    });
+  }
 })();
 </script>
 </body>
